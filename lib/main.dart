@@ -15,21 +15,21 @@ void main() {
   );
 }
 
-class StartPage extends StatefulWidget {
+class SavedWidget extends StatefulWidget {
   final int _num;
   final bool _like;
 
-  StartPage(this._num, this._like);
+  SavedWidget(this._num, this._like);
 
   @override
-  createState() => StartPageState(_num, _like);
+  createState() => SavedWidgetState(_num, _like);
 }
 
-class StartPageState extends State<StartPage> {
+class SavedWidgetState extends State<SavedWidget> {
   int num;
   bool like = false;
 
-  StartPageState(this.num, this.like);
+  SavedWidgetState(this.num, this.like);
 
   void pressButton() {
     setState(() {
@@ -46,10 +46,20 @@ class StartPageState extends State<StartPage> {
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
-      Text('Saved\n$num', textAlign: TextAlign.center),
+      Text(
+          'Saved\n$num',
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontFamily: 'Raleway',
+            fontSize: 18.0,
+            fontWeight: FontWeight.w900
+          ),
+      ),
       IconButton(
           onPressed: pressButton,
-          icon: Icon(like ? Icons.star : Icons.star_border, size: 30.0, color: Colors.purple
+          icon: Icon(
+              like ? Icons.star : Icons.star_border,
+              color: Colors.amber
           )
       )
     ]);
@@ -65,7 +75,13 @@ class HomePage extends StatelessWidget {
   int _num;
   bool _like = false;
 
-  HomePage(this._title, this._text, this._imageUrl, this._num, this._like);
+  HomePage(
+      this._title,
+      this._text,
+      this._imageUrl,
+      this._num,
+      this._like
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -73,49 +89,182 @@ class HomePage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Flutter App'),
-          centerTitle: true,
-          backgroundColor: Colors.purple,
-        ),
-        body: Container(
-          color: Colors.black12,
-          height: 100.0,
-          child: Row(
-            children: <Widget>[
-              Image.network(
-                  _imageUrl,
-                  width: 100.0,
-                  height: 100.0,
-                  fit: BoxFit.cover
+          title: const Text(
+              'Articles',
+              style: TextStyle(
+                fontFamily: 'Raleway',
+                fontWeight: FontWeight.bold
               ),
-              Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                            _title,
-                            style: TextStyle(fontSize: 20.0)
-                        ),
-                        Expanded(
-                            child: Text(
-                              _text + _text,
-                              softWrap: true,
-                              textAlign: TextAlign.justify,
-                              overflow: TextOverflow.ellipsis,
-                            )
-                        )
-                      ],
-                    ),
-                  )
-              ),
-              Container(
-                padding: EdgeInsets.fromLTRB(0.0, 10.0, 25.0, 0.0),
-                child: StartPage(_num, _like)
-                ,
-              )
-            ],
           ),
+          centerTitle: true,
+          backgroundColor: Colors.black54,
+        ),
+        body: Column(
+          children: [
+            Container(
+              color: Colors.black12,
+              height: 150.0,
+              child: Row(
+                children: [
+                  Image.network(
+                      _imageUrl,
+                      width: 150.0,
+                      height: 150.0,
+                      fit: BoxFit.cover
+                  ),
+                  Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Column(
+                          children: <Widget>[
+                            Text(
+                                _title,
+                                style: const TextStyle(
+                                    fontSize: 20.0,
+                                    fontFamily: 'Raleway',
+                                    fontWeight: FontWeight.w900
+                                )
+                            ),
+                            Expanded(
+                                child: Container(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    _text,
+                                    softWrap: true,
+                                    textAlign: TextAlign.justify,
+                                    // overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                        fontSize: 16.0,
+                                        fontFamily: 'Raleway',
+                                        fontWeight: FontWeight.w800
+                                    ),
+                                  ),
+                                )
+                            )
+                          ],
+                        ),
+                      )
+                  ),
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(0.0, 10.0, 25.0, 0.0),
+                    child: SavedWidget(_num, _like),
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(height: 5.0),
+            Container(
+              color: Colors.black12,
+              height: 150.0,
+              child: Row(
+                children: [
+                  Image.network(
+                      _imageUrl,
+                      width: 150.0,
+                      height: 150.0,
+                      fit: BoxFit.cover
+                  ),
+                  Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Column(
+                          children: <Widget>[
+                            Text(
+                                _title,
+                                style: const TextStyle(
+                                    fontSize: 20.0,
+                                    fontFamily: 'Raleway',
+                                    fontWeight: FontWeight.w900
+                                )
+                            ),
+                            Expanded(
+                                child: Container(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    _text,
+                                    softWrap: true,
+                                    textAlign: TextAlign.justify,
+                                    // overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                        fontSize: 16.0,
+                                        fontFamily: 'Raleway',
+                                        fontWeight: FontWeight.w800
+                                    ),
+                                  ),
+                                )
+                            )
+                          ],
+                        ),
+                      )
+                  ),
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(0.0, 10.0, 25.0, 0.0),
+                    child: SavedWidget(_num, _like),
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(height: 5.0),
+            Container(
+              color: Colors.black12,
+              height: 150.0,
+              child: Row(
+                children: [
+                  Image.network(
+                      _imageUrl,
+                      width: 150.0,
+                      height: 150.0,
+                      fit: BoxFit.cover
+                  ),
+                  Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Column(
+                          children: <Widget>[
+                            Text(
+                                _title,
+                                style: const TextStyle(
+                                    fontSize: 20.0,
+                                    fontFamily: 'Raleway',
+                                    fontWeight: FontWeight.w900
+                                )
+                            ),
+                            Expanded(
+                                child: Container(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Text(
+                                    _text,
+                                    softWrap: true,
+                                    textAlign: TextAlign.justify,
+                                    // overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                        fontSize: 16.0,
+                                        fontFamily: 'Raleway',
+                                        fontWeight: FontWeight.w800
+                                    ),
+                                  ),
+                                )
+                            )
+                          ],
+                        ),
+                      )
+                  ),
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(0.0, 10.0, 25.0, 0.0),
+                    child: SavedWidget(_num, _like),
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(height: 25.0),
+            const FloatingActionButton(
+            onPressed: _launchUrl,
+            backgroundColor: Colors.black54,
+            child: Icon(
+                Icons.contact_mail
+            ),
+          )
+          ],
         )
       ),
     );
